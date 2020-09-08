@@ -43,7 +43,7 @@ bot.on('message' , msg=>{
         msg.reply('Pong!')
     }
     if(msg.content === prefix + 'avatar') {
-        let Embed = new MessageEmbed()
+        let Embed = new Discord.MessageEmbed()
         if(!msg.mentions.user.first()){
             Embed.setTitle('Avatarın!')
             Embed.setThumbnail(msg.author.displayAvatarUrl())
