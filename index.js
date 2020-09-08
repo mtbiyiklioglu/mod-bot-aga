@@ -43,7 +43,7 @@ bot.on('message' , msg=>{
         msg.reply('Pong!')
     }
     if(msg.content === prefix + 'avatar') {
-        let Embed = new Discord.MessageEmbed()
+        let Embed = new Discord.RichEmbed()
         .setColor('RANDOM')
         .setImage(msg.author.avatarURL)
         msg.channel.send(Embed)
