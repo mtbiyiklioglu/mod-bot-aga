@@ -44,18 +44,9 @@ bot.on('message' , msg=>{
     }
     if(msg.content === prefix + 'avatar') {
         let Embed = new Discord.MessageEmbed()
-        if(!msg.mentions.user.first()){
-            Embed.setTitle('Avatarın!')
-            Embed.setThumbnail(msg.author.displayAvatarUrl())
-            Embed.setColor('RANDOM')
-            return msg.channel.send(Embed)
-        }else{
-            let User = msg.mentions.users.first()
-            Embed.setTitle(`${User.tag}'ın Avatarı!`)
-            Embed.setThumbnail(User.displayAvatarUrl())
-            Embed.setColor('RANDOM')
-            return msg.channel.send(Embed)
-        }
+        .setColor('RANDOM')
+        .setImage(msg.author.avatarURL)
+        msg.channel.send(Embed)
     }
     if(msg.content === prefix + 'botinfo'){
         
