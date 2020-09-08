@@ -46,7 +46,7 @@ bot.on('message' , msg=>{
         let Embed = new Discord.MessageEmbed()
         .setTitle('Avatarın!')
         .setColor('RANDOM')
-        .setDescription(msg.author.displayAvatarUrl)
+        .setImage(msg.author.displayAvatarURL)
         msg.channel.send(Embed)
     }
     if(msg.content === prefix + 'botinfo'){
