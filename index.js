@@ -29,6 +29,14 @@ bot.on('message', async msg => {
         }
 
     }
+    if (msg.content === prefix + 'yavaşmod') {
+        run()
+        run: async(args) => {
+            if(!args[0]) return msg.channel.send('Yavaş Mod İçin Zaman Girin')
+            if(isNaN(args[0])) return msg.channel.send('Bu Bir Sayı Değil')
+            msg.channel.setRateLimitPerUser(args[0])
+        }
+    }
     if (msg.content === prefix + 'atış') {
         let rdOutput = Math.floor((Math.random() * 3) + 1);
         if (rdOutput == 1) {
@@ -86,11 +94,7 @@ bot.on('message', async msg => {
         msg.reply('Pong!')
     }
     if (msg.content === prefix + 'avatar') {
-        let Embed = new Discord.MessageEmbed()
-            .setTitle('Avatarın!')
-            .setColor('RANDOM')
-            .setImage(msg.author.displayAvatarURL)
-        msg.channel.send(Embed)
+        msg.reply('Bu Komut Henüz Çalışmıyor :(')
     }
     if (msg.content === prefix + 'botinfo') {
 
