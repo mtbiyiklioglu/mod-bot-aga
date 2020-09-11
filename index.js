@@ -13,7 +13,7 @@ const prefix = process.env.PREFIX;
 
 bot.on('ready', () => {
     console.log(bot.user.username + ' ' + 'hazır!');
-    bot.user.setActivity('Covid Vakaları', {type: 'STREAMING'})
+    bot.user.setActivity('Covid Vakaları', {type: 'PLAYING'})
     .then(presence => console.log(`Aktivite ayarlandı:  ${presence.activities[0].name}`))
     .catch(console.error);
 });
