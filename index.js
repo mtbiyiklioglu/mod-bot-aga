@@ -77,6 +77,7 @@ bot.on('message', async msg => {
             { name: 'Günlük Vefat:', value: data.gunluk_vefat },
             { name: 'Günlük İyileşen:', value: data.gunluk_iyilesen }
         )
+        botembed.setDescription('© ProMeteTR')
 
         msg.channel.send(botembed)
 
@@ -89,6 +90,7 @@ bot.on('message', async msg => {
             { name: 'Toplam Vefat:', value: data.toplam_vefat },
             { name: 'Toplam İyileşen:', value: data.toplam_iyilesen }
         )
+        botembed.setDescription('© ProMeteTR')
 
         msg.channel.send(botembed2)
 
