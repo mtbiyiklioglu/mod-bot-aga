@@ -112,8 +112,8 @@ bot.on('message', async msg => {
         botembed.setTitle('Komutlar')
         botembed.setDescription('Prefix: ' + "'" + prefix + "'")
         botembed.addFields(
-            { name: 'bb / merhaba / sa / slm:', value: 'Karşılık Verir' },
-            { name: 'botinfo:', value: '`Bot Bilgilerini Görüntüler`' },
+            { name: 'covid', value: 'Günlük Vakalar' },
+            { name: 'botinfo', value: '`Bot Bilgilerini Görüntüler`' }
         )
 
         msg.channel.send(botembed)
