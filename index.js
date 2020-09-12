@@ -155,7 +155,7 @@ bot.on('message', async msg => {
         botembed.setDescription('Ad: ' + bot.user.username)
         botembed.addFields(
             { name: 'Versiyon:', value: `${config.dynversion}` },
-            { name: 'Yapan:', value: 'ProMeteTR' },
+            { name: 'Yapan:', value: `${config.credits}` },
         )
 
         msg.channel.send(botembed)
