@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const dotenv = require('dotenv');
 const fetch = require('node-fetch');
+const config = require('./config.json')
 
 dotenv.config();
 
@@ -153,7 +154,7 @@ bot.on('message', async msg => {
         botembed.setTitle('Bot Özellikleri :)')
         botembed.setDescription('Ad: ' + bot.user.username)
         botembed.addFields(
-            { name: 'Versiyon:', value: '`1.2.1`' },
+            { name: 'Versiyon:', value: `${config.dynversion}` },
             { name: 'Yapan:', value: 'ProMeteTR' },
         )
 
