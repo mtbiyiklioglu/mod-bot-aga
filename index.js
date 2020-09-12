@@ -38,7 +38,7 @@ bot.on('message', async msg => {
 
     }
     if (command === 'yönetici/at') {
-        if (message.member.hasPermission('ADMINISTRATOR')) {
+        if (msg.member.hasPermission('ADMINISTRATOR')) {
             const userKick = msg.mentions.users.first()
 
             if(userKick) {
