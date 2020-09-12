@@ -23,16 +23,41 @@ var slm = ["merhaba", "slm", "selam", "sa"]
 
 bot.on('message', async msg => {
 
+    if(msg.author.bot) return;
+
+    const args = msg.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLocaleLowerCase();
+
     for (let index = 0; index < slm.length; index++) {
         const element = slm[index];
-        if (msg.content === prefix + element) {
+        if (command === element) {
             msg.reply('Merhaba!')
                 .then(() => console.log(`${msg.author.username} kullanıcısına merhaba`))
                 .catch(console.error);
         }
 
     }
-    if (msg.content === prefix + 'yavaşmod') {
+    if (command === 'yönetici/at') {
+        const userKick = msg.mentions.users.first()
+
+        if(userKick) {
+            let member = msg.guild.member(userKick)
+
+            if(member) {
+                member.kick('Kurallara Uymadığınız İçin Atıldınız!').then(() => {
+                    msg.reply(`Kullanıcı Atıldı: ${userKick.tag}!`)
+                }).catch(err => {
+                    msg.reply('Kullanıcı Atılırken Bir Problem Oluştu')
+                    console.log(err)
+                })
+            } else {
+                msg.reply('Sunucuda Böyle Bir User Yok `#404` ')
+            }
+        } else {
+            msg.reply('Atılacak Kullanıcının Adını Girin! `#hata` ')
+        }
+    }
+    if (command === 'yavaşmod') {
         run()
         run: async(args) => {
             if(!args[0]) return msg.channel.send('Yavaş Mod İçin Zaman Girin')
@@ -40,7 +65,7 @@ bot.on('message', async msg => {
             msg.channel.setRateLimitPerUser(args[0])
         }
     }
-    if (msg.content === prefix + 'atış') {
+    if (command === 'atış') {
         let rdOutput = Math.floor((Math.random() * 3) + 1);
         if (rdOutput == 1) {
             msg.channel.send(`Headshot - Tebrikler, ${msg.author}`)
@@ -54,7 +79,7 @@ bot.on('message', async msg => {
         //msg.channel.send(`:Sniper:`)
 
     }
-    if (msg.content === prefix + 'covid') {
+    if (command === 'covid') {
 
         let data;
 
@@ -95,13 +120,13 @@ bot.on('message', async msg => {
         msg.channel.send(botembed2)
 
     }
-    if (msg.content === prefix + 'ping') {
+    if (command === 'ping') {
         msg.reply('Pong!')
     }
-    if (msg.content === prefix + 'avatar') {
+    if (command === 'avatar') {
         msg.reply('Bu Komut Henüz Çalışmıyor :(')
     }
-    if (msg.content === prefix + 'botinfo') {
+    if (command === 'botinfo') {
 
         let botembed = new Discord.MessageEmbed()
         botembed.setColor('#32CD32')
@@ -115,7 +140,7 @@ bot.on('message', async msg => {
         msg.channel.send(botembed)
 
     }
-    if (msg.content === prefix + 'komutlar') {
+    if (command === 'komutlar') {
         let botembed = new Discord.MessageEmbed()
         botembed.setColor('#fcba03')
         botembed.setTitle('Komutlar')
