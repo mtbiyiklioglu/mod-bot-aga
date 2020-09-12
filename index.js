@@ -38,24 +38,29 @@ bot.on('message', async msg => {
 
     }
     if (command === 'yönetici/at') {
-        const userKick = msg.mentions.users.first()
+        if (message.member.hasPermission('ADMINISTRATOR')) {
+            const userKick = msg.mentions.users.first()
 
-        if(userKick) {
-            let member = msg.guild.member(userKick)
+            if(userKick) {
+                let member = msg.guild.member(userKick)
 
-            if(member) {
-                member.kick('Kurallara Uymadığınız İçin Atıldınız!').then(() => {
-                    msg.reply(`Kullanıcı Atıldı: ${userKick.tag}!`)
-                }).catch(err => {
-                    msg.reply('Kullanıcı Atılırken Bir Problem Oluştu')
-                    console.log(err)
-                })
+                if(member) {
+                    member.kick('Kurallara Uymadığınız İçin Atıldınız!').then(() => {
+                        msg.reply(`Kullanıcı Atıldı: ${userKick.tag}!`)
+                    }).catch(err => {
+                        msg.reply('Kullanıcı Atılırken Bir Problem Oluştu')
+                        console.log(err)
+                    })
+                } else {
+                    msg.reply('Sunucuda Böyle Bir User Yok `#404` ')
+                }
             } else {
-                msg.reply('Sunucuda Böyle Bir User Yok `#404` ')
+                msg.reply('Atılacak Kullanıcının Adını Girin! `#hata` ')
             }
         } else {
-            msg.reply('Atılacak Kullanıcının Adını Girin! `#hata` ')
+            msg.reply('Bu Komutu Kullanmak İçin Admin Olmalısınız! `#Hata Yetersiz Rol` ')
         }
+        
     }
     if (command === 'yavaşmod') {
         run()
