@@ -37,6 +37,21 @@ bot.on('message', async msg => {
         }
 
     }
+    if (command === 'yönetici/komutlar') {
+        if(msg.member.hasPermission('ADMINISTRATOR')) {
+            let botembed = new Discord.MessageEmbed()
+            botembed.setColor('RANDOM')
+            botembed.setTitle('Yönetici Komutları')
+            botembed.setDescription('Yönetici Komutları İçin Başa `yönetici/` yazın')
+            botembed.addFields(
+                { name: 'at', value: 'Adı Verilen Kullanıcıyı Atar' }
+            )
+
+            msg.channel.send(botembed)
+        } else {
+            msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
+        }
+    }
     if (command === 'yönetici/at') {
         if (msg.member.hasPermission('ADMINISTRATOR')) {
             const userKick = msg.mentions.users.first()
@@ -52,10 +67,10 @@ bot.on('message', async msg => {
                         console.log(err)
                     })
                 } else {
-                    msg.reply('Sunucuda Böyle Bir User Yok `#404` ')
+                    msg.reply('Sunucuda Böyle Bir User Yok `#hata 404` ')
                 }
             } else {
-                msg.reply('Atılacak Kullanıcının Adını Girin! `#hata` ')
+                msg.reply('Atılacak Kullanıcının Adını Girin! `#hata yanlış sözdizimi!` ')
             }
         } else {
             msg.reply('Bu Komutu Kullanmak İçin Admin Olmalısınız! `#Hata Yetersiz Rol` ')
