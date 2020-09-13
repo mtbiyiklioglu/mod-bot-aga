@@ -41,7 +41,7 @@ bot.on('message', async msg => {
     if (command === 'yönetici/temizle') {
         if(msg.member.hasPermission('ADMINISTRATOR')) {
             msg.channel.messages.fetch().then((results) => {
-                msg.reply('Siliniyor...')
+                msg.channel.send('Kanal Temizlendi')
                 msg.channel.bulkDelete(results)
             })
         } else {
