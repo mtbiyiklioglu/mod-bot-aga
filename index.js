@@ -38,6 +38,16 @@ bot.on('message', async msg => {
         }
 
     }
+    if (command === 'yönetici/temizle') {
+        if(msg.member.hasPermission('ADMINISTRATOR')) {
+            msg.channel.messages.fetch().then((results) => {
+                msg.reply('Siliniyor...')
+                msg.channel.bulkDelete(results)
+            })
+        } else {
+            msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
+        }
+    }
     if (command === 'yönetici/komutlar') {
         if(msg.member.hasPermission('ADMINISTRATOR')) {
             let botembed = new Discord.MessageEmbed()
@@ -74,7 +84,7 @@ bot.on('message', async msg => {
                 msg.reply('Atılacak Kullanıcının Adını Girin! `#hata yanlış sözdizimi!` ')
             }
         } else {
-            msg.reply('Bu Komutu Kullanmak İçin Admin Olmalısınız! `#Hata Yetersiz Rol` ')
+            msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
         }
         
     }
