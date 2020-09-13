@@ -55,7 +55,8 @@ bot.on('message', async msg => {
             botembed.setTitle('Yönetici Komutları')
             botembed.setDescription('Yönetici Komutları İçin Başa `yönetici/` yazın')
             botembed.addFields(
-                { name: 'at', value: 'Adı Verilen Kullanıcıyı Atar' }
+                { name: 'at', value: 'Adı Verilen Kullanıcıyı Atar' },
+                { name: 'temizle', value: 'Kanaldaki Tüm Mesajları Temizler' }
             )
 
             msg.channel.send(botembed)
