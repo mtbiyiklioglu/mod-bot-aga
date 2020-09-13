@@ -141,6 +141,11 @@ bot.on('message', async msg => {
         msg.channel.send(botembed2)
 
     }
+    if (command === 'duyuru') {
+        const response = args.join(' ')
+        msg.delete()
+        msg.channel.send(response)
+    }
     if (command === 'ping') {
         msg.reply('Pong!')
     }
