@@ -1,4 +1,5 @@
 {
     "dynversion": "1.2.6",
-    "credits": "© ProMeteTR"
+    "credits": "© ProMeteTR",
+    "yprefix" : "y/"
 }

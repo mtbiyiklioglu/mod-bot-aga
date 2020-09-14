@@ -38,7 +38,7 @@ bot.on('message', async msg => {
         }
 
     }
-    if (command === 'yönetici/temizle') {
+    if (command === config.yprefix + 'temizle') {
         if(msg.member.hasPermission('ADMINISTRATOR')) {
             msg.channel.messages.fetch().then((results) => {
                 msg.channel.send('Kanal Temizlendi')
@@ -48,7 +48,7 @@ bot.on('message', async msg => {
             msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
         }
     }
-    if (command === 'yönetici/komutlar') {
+    if (command === config.yprefix + 'komutlar') {
         if(msg.member.hasPermission('ADMINISTRATOR')) {
             let botembed = new Discord.MessageEmbed()
             botembed.setColor('RANDOM')
@@ -64,7 +64,7 @@ bot.on('message', async msg => {
             msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
         }
     }
-    if (command === 'yönetici/at') {
+    if (command === config.yprefix + 'at') {
         if (msg.member.hasPermission('ADMINISTRATOR')) {
             const userKick = msg.mentions.users.first()
 
