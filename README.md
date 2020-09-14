@@ -31,6 +31,14 @@ Take your discord bot token and paste here:
 
     const token = ' Paste Your Token Here ';
 
+Or you can use .env, in .env write this:
+
+    TOKEN=' YOUR TOKEN HERE '
+    
+And in index.js write this:
+    
+    const token = process.env.TOKEN
+
 Then go to terminal and write
 
     node .
