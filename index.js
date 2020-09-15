@@ -48,6 +48,18 @@ bot.on('message', async msg => {
             msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
         }
     }
+    if (command === config.yprefix + 'kaldır') {
+        if(msg.member.hasPermission('ADMINISTRATOR')) {
+            let rol = msg.guild.roles.cache.find(r => r.name === "Muted");
+
+            let member = msg.mentions.members.first();
+    
+            member.roles.remove(rol)
+            msg.channel.send(`Üye'nin Susturması Kaldırıldı, ${member.user.tag}`)
+        } else {
+            msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
+        }
+    }
     if (command === config.yprefix + 'sustur') {
         if(msg.member.hasPermission('ADMINISTRATOR')) {
             let rol = msg.guild.roles.cache.find(r => r.name === "Muted");
