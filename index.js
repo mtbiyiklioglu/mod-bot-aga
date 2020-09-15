@@ -48,6 +48,18 @@ bot.on('message', async msg => {
             msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
         }
     }
+    if (command === config.yprefix + 'sustur') {
+        if(msg.member.hasPermission('ADMINISTRATOR')) {
+            let role = msg.guild.roles.find(r => r.name === "Muted");
+
+            let member = msg.mentions.members.first();
+    
+            member.roles.add(role)
+            msg.channel.send(`Üye Susturuldu, ${member.tag}`)
+        } else {
+            msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
+        }
+    }
     if (command === config.yprefix + 'komutlar') {
         if(msg.member.hasPermission('ADMINISTRATOR')) {
             let botembed = new Discord.MessageEmbed()
