@@ -52,6 +52,10 @@ bot.on('message', async msg => {
         if(msg.member.hasPermission('ADMINISTRATOR')) {
             let rol = msg.guild.roles.cache.find(r => r.name === "Muted");
 
+            if (!rol) {
+                return msg.channel.send('Muted diye bir rol ekleyin ve kanala bağlanma iznini kaldırın')
+            }
+
             let member = msg.mentions.members.first();
     
             member.roles.remove(rol)
@@ -63,6 +67,10 @@ bot.on('message', async msg => {
     if (command === config.yprefix + 'sustur') {
         if(msg.member.hasPermission('ADMINISTRATOR')) {
             let rol = msg.guild.roles.cache.find(r => r.name === "Muted");
+
+            if (!rol) {
+                return msg.channel.send('Muted diye bir rol ekleyin ve kanala bağlanma iznini kaldırın')
+            }
 
             let member = msg.mentions.members.first();
     
