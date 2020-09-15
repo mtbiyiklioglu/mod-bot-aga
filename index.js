@@ -50,12 +50,12 @@ bot.on('message', async msg => {
     }
     if (command === config.yprefix + 'sustur') {
         if(msg.member.hasPermission('ADMINISTRATOR')) {
-            let role = msg.guild.roles.find(r => r.name === "Muted");
+            let rol = msg.guild.roles.cache.find(r => r.name === "Muted");
 
             let member = msg.mentions.members.first();
     
-            member.roles.add(role)
-            msg.channel.send(`Üye Susturuldu, ${member.tag}`)
+            member.roles.add(rol)
+            msg.channel.send(`Üye Susturuldu, ${member.user.tag}`)
         } else {
             msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
         }
