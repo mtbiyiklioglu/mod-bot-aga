@@ -80,6 +80,8 @@ bot.on('message', async msg => {
             botembed.setDescription('Yönetici Komutları İçin Başa `yönetici/` yazın')
             botembed.addFields(
                 { name: 'at', value: 'Adı Verilen Kullanıcıyı Atar' },
+                { name: 'sustur', value: 'Kullanıcıyı Susturur' },
+                { name: 'kaldır', value: 'Kullanıcının Susturmasını Kaldırır' },
                 { name: 'temizle', value: 'Kanaldaki Tüm Mesajları Temizler' }
             )
 
