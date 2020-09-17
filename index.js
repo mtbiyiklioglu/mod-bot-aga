@@ -85,7 +85,7 @@ bot.on('message', async msg => {
             let botembed = new Discord.MessageEmbed()
             botembed.setColor('RANDOM')
             botembed.setTitle('Yönetici Komutları')
-            botembed.setDescription('Yönetici Komutları İçin Başa `yönetici/` yazın')
+            botembed.setDescription(`Yönetici Komutları İçin Başa \`${config.yprefix}\` yazın`)
             botembed.addFields(
                 { name: 'at', value: 'Adı Verilen Kullanıcıyı Atar' },
                 { name: 'sustur', value: 'Kullanıcıyı Susturur' },
