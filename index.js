@@ -227,9 +227,7 @@ bot.on('message', async msg => {
 });
 
 bot.on('guildMemberAdd', member => {
-    const channel = member.guild.channels.cache.find(ch => ch.name === 'member-log');
-    if (!channel) return;
-    channel.send(`Sunucuya Hoşgeldin, ${member}`);
+    msg.channel.send(`Sunucuya Hoşgeldin, ${member}`);
 });
 
 bot.login(token);
