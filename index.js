@@ -227,7 +227,7 @@ bot.on('message', async msg => {
 });
 
 bot.on('guildMemberAdd', member => {
-    msg.channel.send(`Sunucuya Hoşgeldin, ${member}`);
+    msg.channel.send(`Agalar'a Hoşgeldin, ${member}`);
 });
 
 bot.login(token);
