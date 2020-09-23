@@ -229,7 +229,8 @@ bot.on('message', async msg => {
 bot.on('guildMemberAdd', member => {
     const channel = member.guild.channels.cache.find(ch => ch.name === 'genel');
     if (!channel) return;
-    channel.send(`Agalar'a Hoşgeldin, ${member}`);
+    let svname = member.guild.name
+    channel.send(` ${svname}'a Hoşgeldin, ${member}`);
 });
 
 bot.login(token);
