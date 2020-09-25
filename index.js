@@ -25,6 +25,7 @@ var slm = ["merhaba", "slm", "selam", "sa"]
 bot.on('message', async msg => {
 
     if(msg.author.bot) return;
+    if(!msg.content.startsWith(prefix)) return;
 
     const args = msg.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLocaleLowerCase();
