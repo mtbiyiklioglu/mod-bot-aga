@@ -53,7 +53,8 @@ bot.on('message', async msg => {
     if (msg.content.includes('https://')) {
         const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
         if (channel) {
-            console.log('//')
+            channel.send(`${msg.author} Link Gönderdi \`#Uyarı\``)
+            msg.delete()
             msg.channel.send('Link Yasak! ❌')
         }
     }
