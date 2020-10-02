@@ -40,7 +40,7 @@ bot.on('message', async msg => {
 
     }
     if (command === config.yprefix + 'link-yasak') {
-        const channel = member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
+        const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
         if (!channel) {
             msg.reply('Link Yasaklama Sistemi Kuruluyor...')
             guild.channels.create('link-yasak', { reason: 'Link Ayarı' })
@@ -51,7 +51,7 @@ bot.on('message', async msg => {
         channel.send(`Sunucu Adı: ${svname} \n Sunucu Link Ayarı: ${channel}`);
     }
     if (command.startsWith('http://' || command.startsWith('https://'))) {
-        const channel = member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
+        const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
         if (channel) {
             msg.reply('Link Yasak!')
         }
