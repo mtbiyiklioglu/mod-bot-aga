@@ -43,7 +43,7 @@ bot.on('message', async msg => {
         const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
         if (!channel) {
             msg.reply('Link Yasaklama Sistemi Kuruluyor...')
-            guild.channels.create('link-yasak', { reason: 'Link Ayarı' })
+            msg.member.guild.channels.create('link-yasak', { reason: 'Link Ayarı' })
             .then(msg.channel.send('✅ İşlem Başarıyla Tamamlandı'))
             .catch(console.error);
         }
