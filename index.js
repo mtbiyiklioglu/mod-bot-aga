@@ -25,7 +25,7 @@ var slm = ["merhaba", "slm", "selam", "sa"]
 bot.on('message', async msg => {
 
     if(msg.author.bot) return;
-    if(!msg.content.startsWith(prefix)) return;
+    //if(!msg.content.startsWith(prefix)) return;
 
     const args = msg.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLocaleLowerCase();
@@ -53,6 +53,7 @@ bot.on('message', async msg => {
     if (msg.content.includes('https://')) {
         const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
         if (channel) {
+            console.log('//')
             msg.channel.send('Link Yasak! ❌')
         }
     }
