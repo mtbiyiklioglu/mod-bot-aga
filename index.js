@@ -53,7 +53,7 @@ bot.on('message', async msg => {
     if (command.startsWith('http://') || command.startsWith('https://')) {
         const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
         if (channel) {
-            msg.channel.send('Link Yasak! ❌')
+            msg.reply('Link Yasak! ❌')
         }
     }
     if (command === config.yprefix + 'temizle') {
