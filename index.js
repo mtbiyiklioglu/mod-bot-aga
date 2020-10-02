@@ -25,10 +25,19 @@ var slm = ["merhaba", "slm", "selam", "sa"]
 bot.on('message', async msg => {
 
     if(msg.author.bot) return;
-    //if(!msg.content.startsWith(prefix)) return;
 
     const args = msg.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLocaleLowerCase();
+    if (msg.content.includes('https://') || msg.content.includes('http://')) {
+        const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
+        if (channel) {
+            channel.send(`${msg.author} Link Gönderdi \`#Uyarı\``)
+            msg.delete()
+            msg.channel.send('Link Yasak! ❌')
+        }
+    }
+
+    if(!msg.content.startsWith(prefix)) return;
 
     for (let index = 0; index < slm.length; index++) {
         const element = slm[index];
@@ -52,14 +61,6 @@ bot.on('message', async msg => {
             channel.send(`Sunucu Adı: ${svname} \n Sunucu Link Ayarı: ${channel}`);
         } else {
             msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
-        }
-    }
-    if (msg.content.includes('https://') || msg.content.includes('http://')) {
-        const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
-        if (channel) {
-            channel.send(`${msg.author} Link Gönderdi \`#Uyarı\``)
-            msg.delete()
-            msg.channel.send('Link Yasak! ❌')
         }
     }
     if (command === config.yprefix + 'link-serbest') {
