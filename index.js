@@ -39,6 +39,21 @@ bot.on('message', async msg => {
         }
 
     }
+    if (command === config.yprefix + 'y-link') {
+        const channel = member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
+        if (!channel) {
+            msg.reply('Link Yasaklama Sistemi Kuruluyor...')
+            guild.channels.create('link-yasak', { reason: 'Link Ayarı' })
+            .then(() => {
+                msg.channel.send(`Link Yasaklandı \`#Başarılı (Beta)\``)
+                let svname = member.guild.name
+                channel.send(`Sunucu Adı: ${svname} \n Sunucu Link Ayarı: ${channel}`);
+            })
+            .catch(console.error);
+        }
+        let svname = member.guild.name
+        channel.send(`Sunucu Adı: ${svname} \n Sunucu Link Ayarı: ${channel}`);
+    }
     if (command === config.yprefix + 'temizle') {
         if(msg.member.hasPermission('ADMINISTRATOR')) {
             msg.channel.messages.fetch().then((results) => {
