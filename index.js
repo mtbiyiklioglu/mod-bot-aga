@@ -40,23 +40,39 @@ bot.on('message', async msg => {
 
     }
     if (command === config.yprefix + 'link-yasak') {
-        const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
-        if (!channel) {
-            msg.reply('Link Yasaklama Sistemi Kuruluyor...')
-            msg.member.guild.channels.create('link-yasak', { reason: 'Link Ayarı' })
-            .then(msg.channel.send('✅ İşlem Başarıyla Tamamlandı'))
-            .catch(console.error);
+        if(msg.member.hasPermission('ADMINISTRATOR')) {
+            const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
+            if (!channel) {
+                msg.reply('Link Yasaklama Sistemi Kuruluyor...')
+                msg.member.guild.channels.create('link-yasak', { reason: 'Link Ayarı' })
+                .then(msg.channel.send('✅ İşlem Başarıyla Tamamlandı'))
+                .catch(console.error);
+            }
+            let svname = msg.member.guild.name
+            channel.send(`Sunucu Adı: ${svname} \n Sunucu Link Ayarı: ${channel}`);
+        } else {
+            msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
         }
-        let svname = msg.member.guild.name
-        channel.send(`Sunucu Adı: ${svname} \n Sunucu Link Ayarı: ${channel}`);
     }
-    if (msg.content.includes('https://')) {
+    if (msg.content.includes('https://') || msg.content.includes('http://')) {
         const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
         if (channel) {
             channel.send(`${msg.author} Link Gönderdi \`#Uyarı\``)
             msg.delete()
             msg.channel.send('Link Yasak! ❌')
         }
+    }
+    if (command === config.yprefix + 'link-serbest') {
+        if(msg.member.hasPermission('ADMINISTRATOR')) {
+            const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
+            if (channel) {
+                channel.delete()
+                msg.channel.send('✅ Link Engelleme Sistemi Kaldırıldı')
+            } 
+        } else {
+            msg.reply('Bu komutları görüntüleyecek yetkiniz yok! `#hata Yetersiz Yetki`')
+        }
+
     }
     if (command === config.yprefix + 'temizle') {
         if(msg.member.hasPermission('ADMINISTRATOR')) {
@@ -108,6 +124,8 @@ bot.on('message', async msg => {
             botembed.setDescription(`Yönetici Komutları İçin Başa \`${config.yprefix}\` yazın`)
             botembed.addFields(
                 { name: 'at', value: 'Adı Verilen Kullanıcıyı Atar' },
+                { name: 'link-engel', value: 'Linkleri Engeller' },
+                { name: 'link-serbest', value: 'Link Engeli Kaldırır' },
                 { name: 'sustur', value: 'Kullanıcıyı Susturur' },
                 { name: 'kaldır', value: 'Kullanıcının Susturmasını Kaldırır' },
                 { name: 'temizle', value: 'Kanaldaki Tüm Mesajları Temizler' }
