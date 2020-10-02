@@ -50,7 +50,7 @@ bot.on('message', async msg => {
         let svname = msg.member.guild.name
         channel.send(`Sunucu Adı: ${svname} \n Sunucu Link Ayarı: ${channel}`);
     }
-    if (msg.content === msg.content.startsWith('http://') || msg.content === msg.content.startsWith('https://')) {
+    if (msg.content.includes('https://')) {
         const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
         if (channel) {
             msg.channel.send('Link Yasak! ❌')
