@@ -48,11 +48,21 @@ bot.on('message', async msg => {
         }
 
     }
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds) {
+                break;
+            }
+            }
+    }
     if (command === config.yprefix + 'link-yasak') {
         if(msg.member.hasPermission('ADMINISTRATOR')) {
             const channel = msg.member.guild.channels.cache.find(ch => ch.name === 'link-yasak');
             if (!channel) {
                 msg.reply('Link Yasaklama Sistemi Kuruluyor...')
+                sleep(3000)
+                msg.delete()
                 msg.member.guild.channels.create('link-yasak', { reason: 'Link Ayarı' })
                 .then(msg.channel.send('✅ İşlem Başarıyla Tamamlandı'))
                 .catch(console.error);
