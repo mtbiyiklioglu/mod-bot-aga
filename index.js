@@ -171,14 +171,12 @@ bot.on('message', async msg => {
     if (command === 'server') {
         let botembed = new Discord.MessageEmbed()
         botembed.setColor('RANDOM')
-        botembed.setTitle('Sunucu Bilgileri')
         botembed.addFields(
             { name: 'Sunucu Adı:', value: `${msg.guild.name}` },
             { name: 'Üye Sayısı:', value: `${msg.guild.memberCount}` }
         )
-        botembed.setImage(msg.guild.iconURL)
+        botembed.setFooter('Mod Bot','https://cdn.discordapp.com/attachments/751094465271169104/757598502586155028/Mod_Bot.png')
         botembed.setTimestamp()
-
         msg.channel.send(botembed)
     }
 
