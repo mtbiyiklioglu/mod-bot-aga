@@ -174,9 +174,10 @@ bot.on('message', async msg => {
         botembed.setTitle('Sunucu Bilgileri')
         botembed.addFields(
             { name: 'Sunucu Adı:', value: `${msg.guild.name}` },
-            { name: 'Üye Sayısı:', value: `${msg.guild.memberCount}` },
-            { name: 'Bot Sayısı:', value: `${msg.guild.iconURLs}` }
+            { name: 'Üye Sayısı:', value: `${msg.guild.memberCount}` }
         )
+        botembed.setImage(msg.guild.iconURL)
+        botembed.setTimestamp()
 
         msg.channel.send(botembed)
     }
