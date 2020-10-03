@@ -161,6 +161,26 @@ bot.on('message', async msg => {
         }
         
     }
+
+
+
+    // -------------- STANDART KOMUTLAR ---------------- //
+
+
+
+    if (command === 'server') {
+        let botembed = new Discord.MessageEmbed()
+        botembed.setColor('RANDOM')
+        botembed.setTitle('Sunucu Bilgileri')
+        botembed.addFields(
+            { name: 'Sunucu Adı:', value: `${msg.guild.name}` },
+            { name: 'Üye Sayısı:', value: `${msg.guild.memberCount}` },
+            { name: 'Bot Sayısı:', value: `${msg.guild.iconURLs}` }
+        )
+
+        msg.channel.send(botembed)
+    }
+
     if (command === 'yavaşmod') {
         run()
         run: async(args) => {
