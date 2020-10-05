@@ -167,6 +167,9 @@ bot.on('message', async msg => {
     // -------------- STANDART KOMUTLAR ---------------- //
 
 
+    if (command === 'web') {
+        msg.channel.send(`Mod Bot Web > http://dashboard-modbot.herokuapp.com/ \n ${config.credits}`)
+    }
 
     if (command === 'server') {
         let botembed = new Discord.MessageEmbed()
