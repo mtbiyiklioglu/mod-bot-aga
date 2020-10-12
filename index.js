@@ -317,7 +317,9 @@ bot.on('message', async msg => {
         botembed.setTitle('Komutlar')
         botembed.setDescription('Prefix: ' + "'" + prefix + "'")
         botembed.addFields(
+            { name: 'avatar', value: 'Profil İsmini Ve Fotoğrafını Atar' },
             { name: 'covid', value: 'Günlük Vakalar' },
+            { name: 'atış', value: 'Atış Yapar Ve Rastgele Bir Sonuç Alır' },
             { name: 'botinfo', value: '`Bot Bilgilerini Görüntüler`' }
         )
 
