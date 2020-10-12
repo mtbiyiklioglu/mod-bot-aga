@@ -185,7 +185,7 @@ bot.on('message', async msg => {
         msg.channel.send(`Mod Bot Web > https://dashboard-modbot.herokuapp.com/ \n ${config.credits}`)
     }
 
-    if(command === prefix + 'avatar') {
+    if(command ===  'avatar') {
 
 		const canvas = Canvas.createCanvas(700, 250);
 		const ctx = canvas.getContext('2d');
@@ -296,9 +296,6 @@ bot.on('message', async msg => {
     }
     if (command === 'ping') {
         msg.channel.send(`Ping: ${msg.client.ws.ping}ms`)
-    }
-    if (command === 'avatar') {
-        msg.reply('Bu Komut Henüz Çalışmıyor :(')
     }
     if (command === 'botinfo') {
 
