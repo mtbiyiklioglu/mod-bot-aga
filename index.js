@@ -329,8 +329,8 @@ bot.on('message', async msg => {
 
 });
 
-bot.on('guildMemberAdd', member => {
-    
+bot.on('guildMemberAdd', async member => {
+
         const channel = member.guild.systemChannel
 		if (!channel) return;
 	
