@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+const Canvas = require('canvas')
 const dotenv = require('dotenv');
 const fetch = require('node-fetch');
 const config = require('./config.json')
@@ -21,6 +22,19 @@ bot.on('ready', () => {
 
 // -- Hazır Komutlar -- \\
 var slm = ["merhaba", "slm", "selam", "sa"]
+
+const applyText = (canvas, text) => {
+	const ctx = canvas.getContext('2d');
+
+	let fontSize = 50;
+
+	do {
+		ctx.font = `${fontSize -= 10}px sans-serif`;
+		
+	} while (ctx.measureText(text).width > canvas.width - 300);
+
+	return ctx.font;
+};
 
 bot.on('message', async msg => {
 
@@ -171,6 +185,35 @@ bot.on('message', async msg => {
         msg.channel.send(`Mod Bot Web > https://dashboard-modbot.herokuapp.com/ \n ${config.credits}`)
     }
 
+    if(command === prefix + 'avatar') {
+
+		const canvas = Canvas.createCanvas(700, 250);
+		const ctx = canvas.getContext('2d');
+
+		const background = await Canvas.loadImage('./canvas.png');
+		ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+		ctx.strokeStyle = '#74037b';
+		ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+		// Assign the decided font to the canvas
+		ctx.font = applyText(canvas, msg.member.displayName);
+		ctx.fillStyle = '#ffffff';
+		ctx.fillText(msg.member.displayName, canvas.width / 2.5, canvas.height / 1.8);
+
+		ctx.beginPath();
+		ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+		ctx.closePath();
+		ctx.clip();
+
+		const avatar = await Canvas.loadImage(msg.member.user.displayAvatarURL({ format: 'jpg' }));
+		ctx.drawImage(avatar, 25, 25, 200, 200);
+
+		const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'sscanvas.png');
+
+		msg.channel.send(attachment);
+   }
+
     if (command === 'server') {
         let botembed = new Discord.MessageEmbed()
         botembed.setColor('RANDOM')
@@ -287,10 +330,40 @@ bot.on('message', async msg => {
 });
 
 bot.on('guildMemberAdd', member => {
-    const channel = member.guild.channels.cache.find(ch => ch.name === 'genel');
-    if (!channel) return;
-    let svname = member.guild.name
-    channel.send(` ${svname}'a Hoşgeldin, ${member}`);
+    
+        const channel = member.guild.systemChannel
+		if (!channel) return;
+	
+		const canvas = Canvas.createCanvas(700, 250);
+		const ctx = canvas.getContext('2d');
+	
+		const background = await Canvas.loadImage('./canvas.png');
+		ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+	
+		ctx.strokeStyle = '#74037b';
+		ctx.strokeRect(0, 0, canvas.width, canvas.height);
+	
+		// Slightly smaller text placed above the member's display name
+		ctx.font = '28px sans-serif';
+		ctx.fillStyle = '#ffffff';
+		ctx.fillText('Sunucuya Hoşgeldin,', canvas.width / 2.5, canvas.height / 3.5);
+	
+		// Add an exclamation point here and below
+		ctx.font = applyText(canvas, `${member.displayName}!`);
+		ctx.fillStyle = '#ffffff';
+		ctx.fillText(`${member.displayName}!`, canvas.width / 2.5, canvas.height / 1.8);
+	
+		ctx.beginPath();
+		ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+		ctx.closePath();
+		ctx.clip();
+	
+		const avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'jpg' }));
+		ctx.drawImage(avatar, 25, 25, 200, 200);
+	
+		const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'sscanvas.jpg');
+	
+		channel.send(`Sunucuya Hoşgeldin, ${member}!`, attachment);
 });
 
 bot.login(token);
