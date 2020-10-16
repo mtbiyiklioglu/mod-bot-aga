@@ -119,7 +119,18 @@ bot.on('message', async msg => {
             let rol = msg.guild.roles.cache.find(r => r.name === "Muted");
 
             if (!rol) {
-                return msg.channel.send('Muted diye bir rol ekleyin ve kanala bağlanma iznini kaldırın')
+                rol = await msg.guild.roles.create({
+                    data: {
+                        name: 'Muted',
+                        color: 'RED'
+                    }
+                }).catch(err => console.log(err))
+                for(const channel of msg.guild.channels.cache) {
+                    channel[1].updateOverwrite(rol, {
+                        SEND_MESSAGES: false,
+                        CONNECT: false,
+                    }).catch(err => console.log(err))
+                }
             }
 
             let member = msg.mentions.members.first();
